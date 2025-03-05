@@ -1,0 +1,386 @@
+
+
+#header a {
+    color: #999;
+    cursor: pointer;
+}
+#header {
+
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+    height: 48px;
+    width: 100%;
+    background-color: white;
+    padding: 25px 30px;
+    color: #666;
+    border-bottom: 2px solid #f2f2f2;
+    margin-bottom: 25px;
+}
+
+#header_left, #header_right {
+    display: flex;
+    width: 100%;
+}
+#header_right {
+
+    justify-content: flex-end;
+    margin: 5%;
+}
+
+#header #logo_img {
+    height: 48px;
+    margin-left: 12px;
+}
+
+#header #user_img {
+    height: 36px;
+    border-radius: 100%;
+}
+
+#header_search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 320px;
+    min-width: 80px;
+}
+
+#header_search input {
+    width: 100%;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 0 6px 28px;
+    font-size: 16px;
+    background-color: #ebebeb;
+}
+
+#header .search_icon {
+    padding: 8px;
+    position: absolute;
+}
+
+#header #nav {
+    display: flex;
+    justify-content: space-between;
+    line-height: 48px;
+    width: 400px;
+    margin-right: 24px;
+}
+
+#header #user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#header #user #user_text {
+    background-color: rgb(248, 224, 228);
+    color: rgb(231, 100, 170);
+    border-radius: 6px;
+    padding: 4px 6px;
+    margin-right: 8px;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    margin-right: 10px; 
+}
+
+.logo img {
+    width: 100%; 
+    height: auto;
+    margin-right: 10px;
+}
+
+.logo span {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff4081;
+}
+
+
+.search-bar {
+    display: flex;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.search-bar input {
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    width: 200px; 
+}
+
+
+.menu {
+    margin-right: 20px;
+}
+
+.menu ul {
+    list-style: none;
+    display: flex;
+    gap: 20px; /* Khoảng cách giữa các menu item */
+}
+
+.menu ul li {
+    display: inline-block;
+}
+
+.menu ul li a {
+    text-decoration: none;
+    font-size: 16px;
+    color: #333;
+    font-weight: bold;
+    padding: 10px 15px;
+    transition: color 0.3s;
+}
+
+.menu ul li a:hover {
+    color: #ff4081;
+}
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.recipe-btn {
+    background: #ff4081;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-right: 15px;
+}
+
+.user {
+    font-size: 22px;
+}
+main {
+    background-color: white;
+    color: black;
+    padding: 40px 20px;
+    font-size: 16px;
+    min-height: 60vh;
+    display: flex;
+    
+}
+.container {
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.filters {
+    width: 250px;
+    padding: 20px ; 
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background: #f9f9f9;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.filter-group h4 {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin: 5px 0;
+}
+
+.apply-btn {
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* No Results Section */
+.no-results {
+    flex: 1;
+    text-align: center;
+    padding: 50px;
+}
+
+.no-results h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.no-results span {
+    font-weight: bold;
+    color: #030303;
+}
+
+.no-results img {
+    width: 120px;
+    margin: 20px 0;
+}
+
+.no-results p {
+    margin-bottom: 20px;
+}
+
+.suggestions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.tag {
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    color: white;
+    cursor: pointer;
+}
+
+.pink { background-color: #dab2bf; }
+.purple { background-color: #ba9fe9; }
+.green { background-color: #beecc0; }
+.blue { background-color: #9ac5e9;}
+.apply-btn:hover {
+    background-color: #e040fb; /* Màu hồng tối hơn một chút */
+}
+
+.tag:hover {
+    opacity: 0.8;
+}
+
+footer {
+    background-color: #333;
+    color: #ddd;
+    padding: 50px 0;
+    font-size: 16px;
+
+}
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 40px;
+}
+
+/* Bên trái: About Us + Thanh nhập email */
+.footer-left {
+    flex: 1;
+    margin-right: 40px;
+}
+
+/* Tiêu đề */
+.footer-left h3,
+.footer-links h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #ff4081;
+}
+
+/* Nội dung About Us */
+.footer-left p {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Thanh nhập email */
+.footer-subscribe {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.footer-subscribe input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 250px;
+}
+
+.footer-subscribe button {
+    padding: 10px 15px;
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.footer-subscribe button:hover {
+    background-color: #e03670;
+}
+
+/* Bên phải: Các danh mục */
+.footer-right {
+    display: flex;
+    flex: 2;
+    justify-content: space-between;
+}
+
+/* Các danh mục điều hướng */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+}
+
+.footer-links ul li a:hover {
+    color: #ff4081;
+}
+
+/* Footer Bottom */
+.footer-bottom {
+    text-align: left;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid #444;
+    font-size: 14px;
+    padding-left: 50px;
+}
+.logo1{
+    display:flex;
+    align-items: center;
+}
+.logo1 img {
+    margin-right: 10px; 
+}
+.type-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Creates two equal columns */
+    gap: 5px; /* Space between items */
+}
+
+.type-options label {
+    display: flex;
+    align-items: center;
+    margin: 0; /* Remove default margin to avoid extra spacing */
+}
+.slider-container img{
+    width: 95%;
+}
