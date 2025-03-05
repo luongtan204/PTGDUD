@@ -1,0 +1,78 @@
+.recipe-box {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: gray;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.profileimg {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.profile h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.profile p {
+  font-size: 14px;
+  color: #666;
+  margin-top: 5px;
+  text-align: left;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.subscribe {
+  color: #ff4f8b;
+  font-weight: bold;
+}
+
+.share-btn {
+  background-color: #ff4f8b;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 100px;
+  
+  border: none;
+  cursor: pointer;
+}
+
+.share-btn:hover {
+  opacity: 0.8;
+}
+
+.nav-tabs {
+  margin-top: 20px;
+  border-bottom: 2px solid #eee;
+}
+
+.nav-tabs button {
+  padding: 10px;
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.nav-tabs .active {
+  color: #ff4f8b;
+  border-bottom: 2px solid #ff4f8b;
+}
