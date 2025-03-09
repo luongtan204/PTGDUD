@@ -62,7 +62,7 @@ header {
   }
   
   .header-right button {
-    background-color: #eb77b1;
+    background-color: #ec4899;
     color: white;
     padding: 8px 16px;
     border-radius: 9999px;
@@ -77,15 +77,9 @@ header {
   }
   
   .header-right img {
-
-    border-radius: 50%;
-    border: none;
-    margin-top: 5px;
-  }
-  .icon12{
-    display: block;
     width: 40px;
     height: 40px;
-    
+    border-radius: 50%;
+    border: 1px solid #ddd;
   }
   

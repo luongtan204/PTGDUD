@@ -7,9 +7,9 @@ const Header = () => {
       {/* Logo + Search */}
       <div className="header-left">
         <h1>
-          <img src="https://res.cloudinary.com/dtk18zlgn/image/upload/v1741176503/react/iumiywcchnkcfzkddjup.png" alt="" />
+          <span>🍳</span> Cheffly
         </h1>
-        <input type="text" placeholder="🍳What would you like to cook?" />
+        <input type="text" placeholder="What would you like to cook?" />
       </div>
 
       {/* Navigation */}
@@ -23,8 +23,8 @@ const Header = () => {
 
       {/* Profile Button */}
       <div className="header-right">
-        <button><img  src="https://res.cloudinary.com/dtk18zlgn/image/upload/v1741176503/react/ecb95efolvdvv5bax4vo.png" alt="" />Your Recipe Box</button>
-        <img className="icon12" src="https://res.cloudinary.com/dtk18zlgn/image/upload/v1741176504/react/rwtzijlvdig5axf2gf6g.png" alt="Profile" />
+        <button>Your Recipe Box</button>
+        <img src="https://res.cloudinary.com/dzljgccna/image/upload/v1741178326/ptgd/lhei5dfduzmypnoprbd9.png" alt="Profile" />
       </div>
     </header>
   );
