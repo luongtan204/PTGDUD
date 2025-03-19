@@ -1,0 +1,23 @@
+.footer {
+  
+  padding: 1rem;
+
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #343a40; /* Màu nền tối */
+  color: #ffffff; /* Màu chữ trắng */
+  padding: 1rem;
+  text-align: center;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.footer span {
+  font-size: 1rem;
+  font-weight: 500;
+}

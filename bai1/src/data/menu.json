@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Hamburger",
+    "description": "Ngon ngon ngon!!!",
+    "image": "src/images/hamburger.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Pho",
+    "description": "A Vietnamese soup consisting of broth, rice noodles, herbs, and meat, sometimes chicken.",
+    "image": "src/images/pho.jpg"
+  },
+  {
+    "id": 3,
+    "name": "pizza",
+    "description": "A large round flat Italian bread topped with cheese, tomatoes, and other ingredients.",
+    "image": "src/images/pizza.jpg"
+  },
+  {
+    "id": 4,
+    "name": "pizza",
+    "description": "A large round flat Italian bread topped with cheese, tomatoes, and other ingredients.",
+    "image": "src/images/pizza2.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Chocolate Lava Cake",
+    "description": "Warm chocolate cake with a gooey molten center, served with vanilla ice cream.",
+    "image": "/images/hamburger.jpg"
+  }
+]

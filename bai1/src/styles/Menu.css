@@ -1,0 +1,63 @@
+.menu {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.menu h1 {
+  text-align: center;
+}
+
+.menu ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.menu li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
+  cursor: pointer;
+  width: 150px;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, color 0.3s;
+}
+
+.menu li:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #007bff; /* Màu nền khi hover */
+  color: #ffffff; /* Màu chữ khi hover */
+}
+
+.menu-item-image {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 10px;
+}
+
+.menu-item-details {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.menu-item-details img {
+  width: 200px;
+  height: 200px;
+}
+
+.btn-add-to-cart {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-add-to-cart:hover {
+  background-color: #218838;
+}
