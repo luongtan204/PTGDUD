@@ -1,18 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import NavLeft from './components/NavLeft'
-import Home from './pages/Home'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Overview from './components/OverView';
+import Database from './components/Database';
+import NavLeft from './components/NavLeft';
+import Header from './components/Header';
+
 function App() {
-
-
   return (
-    <>
-    <Home></Home>
-    <input type="text" placeholder="sas"/>
-    </>
-  )
+    <Router>
+      <div className="flex">
+        {/* Thanh điều hướng bên trái */}
+        <div className="w-1/7 bg-gray-200 min-h-screen">
+          <NavLeft />
+        </div>
+        {/* Nội dung chính */}
+        <div className="flex-1">
+          {/* Header luôn hiển thị */}
+          <Header />
+          {/* Nội dung thay đổi dựa trên tuyến đường */}
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/overview" element={<Overview />} />
+            <Route path="/database" element={<Database />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
+  );
 }
 
-export default App
+export default App;

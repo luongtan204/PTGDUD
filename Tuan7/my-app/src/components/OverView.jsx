@@ -36,7 +36,7 @@ const OverView = () => {
   }, []);
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
+    <div className="p-6 bg-gray-100 ">
       <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
         <img src="\img\Squares four 1.png" alt="" /> Overview
       </h2>
