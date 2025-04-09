@@ -1,18 +1,53 @@
 import React, { useEffect, useState } from 'react';
-import { FaDownload, FaUpload, FaPen } from 'react-icons/fa'; // Import icons for Import, Export, and Edit buttons
+import { FaDownload, FaUpload, FaPen } from 'react-icons/fa';
 
 const Database = () => {
   const [reports, setReports] = useState([]);
+  const [selectedReport, setSelectedReport] = useState(null); // Report được chọn để chỉnh sửa
+  const [isModalOpen, setIsModalOpen] = useState(false); // Trạng thái mở modal
 
   useEffect(() => {
     // Fetch report data from JSON server
-    fetch('http://localhost:3004/reports') // Replace with your JSON server endpoint
+    fetch('http://localhost:3004/reports')
       .then((response) => response.json())
       .then((data) => setReports(data));
   }, []);
 
+  // Hàm mở modal và đặt dữ liệu report được chọn
+  const handleEditClick = (report) => {
+    setSelectedReport(report);
+    setIsModalOpen(true);
+  };
+
+  // Hàm xử lý khi người dùng thay đổi dữ liệu trong modal
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setSelectedReport({ ...selectedReport, [name]: value });
+  };
+
+  // Hàm lưu dữ liệu chỉnh sửa
+  const handleSave = () => {
+    fetch(`http://localhost:3004/reports/${selectedReport.id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(selectedReport),
+    })
+      .then((response) => response.json())
+      .then((updatedReport) => {
+        // Cập nhật danh sách reports
+        setReports((prevReports) =>
+          prevReports.map((report) =>
+            report.id === updatedReport.id ? updatedReport : report
+          )
+        );
+        setIsModalOpen(false); // Đóng modal
+      });
+  };
+
   return (
-    <div className="p-6 bg-gray-100 ">
+    <div className="p-6 bg-gray-100">
       {/* Header Section */}
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-2xl font-bold flex items-center gap-2">
@@ -80,7 +115,10 @@ const Database = () => {
                   </span>
                 </td>
                 <td className="p-4 text-gray-400">
-                  <button className="hover:text-pink-500">
+                  <button
+                    className="hover:text-pink-500"
+                    onClick={() => handleEditClick(report)}
+                  >
                     <FaPen />
                   </button>
                 </td>
@@ -90,17 +128,81 @@ const Database = () => {
         </table>
       </div>
 
-      {/* Pagination */}
-      <div className="flex justify-between items-center mt-4">
-        <span className="text-gray-600">63 results</span>
-        <div className="flex items-center gap-2">
-          <button className="px-3 py-1 rounded-full bg-pink-500 text-white">1</button>
-          <button className="px-3 py-1 rounded-full text-gray-600 hover:bg-gray-200">2</button>
-          <button className="px-3 py-1 rounded-full text-gray-600 hover:bg-gray-200">3</button>
-          <span className="text-gray-400">...</span>
-          <button className="px-3 py-1 rounded-full text-gray-600 hover:bg-gray-200">11</button>
+      {/* Edit Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-gray-200 bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+            <h3 className="text-xl font-bold mb-4">Edit Report</h3>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">Customer Name</label>
+              <input
+                type="text"
+                name="customerName"
+                value={selectedReport.customerName}
+                onChange={handleInputChange}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">Company</label>
+              <input
+                type="text"
+                name="company"
+                value={selectedReport.company}
+                onChange={handleInputChange}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">Order Value</label>
+              <input
+                type="text"
+                name="orderValue"
+                value={selectedReport.orderValue}
+                onChange={handleInputChange}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">Order Date</label>
+              <input
+                type="text"
+                name="orderDate"
+                value={selectedReport.orderDate}
+                onChange={handleInputChange}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+              />
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">Status</label>
+              <select
+                name="status"
+                value={selectedReport.status}
+                onChange={handleInputChange}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+              >
+                <option value="New">New</option>
+                <option value="In-progress">In-progress</option>
+                <option value="Completed">Completed</option>
+              </select>
+            </div>
+            <div className="flex justify-end gap-4">
+              <button
+                className="px-4 py-2 bg-gray-300 rounded-md"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-4 py-2 bg-pink-500 text-white rounded-md"
+                onClick={handleSave}
+              >
+                Save
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

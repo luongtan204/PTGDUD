@@ -5,7 +5,7 @@ import Database from '../components/Database';
 const Main = () => {
 
     return (
-        <><Header></Header><Overview></Overview><Database></Database></>
+        <><Overview></Overview><Database></Database></>
     );
 }
 export default Main;
