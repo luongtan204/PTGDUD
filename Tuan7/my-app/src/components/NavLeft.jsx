@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const NavLeft = () => {
   return (
@@ -9,40 +9,82 @@ const NavLeft = () => {
       <nav class="flex-1 my-5">
         <ul class="space-y-2">
           <li>
-            <Link to="/" class="flex items-center p-3 rounded-lg hover:bg-pink-500">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `flex items-center p-3 rounded-lg hover:bg-pink-500 ${
+                  isActive ? 'bg-pink-500 text-white' : ''
+                }`
+              }
+            >
               <img src="\img\Squares four 1.png" alt="" />
               <span class="ml-3">Dashboard</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/main" class="flex items-center p-3 rounded-lg hover:bg-pink-500">
+            <NavLink
+              to="/main"
+              className={({ isActive }) =>
+                `flex items-center p-3 rounded-lg hover:bg-pink-500 ${
+                  isActive ? 'bg-pink-500 text-white' : ''
+                }`
+              }
+            >
               <img src="\img\Folder.png" alt="" />
               <span class="ml-3">Project</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/teams" class="flex items-center p-3 rounded-lg hover:bg-pink-500">
+            <NavLink
+              to="/teams"
+              className={({ isActive }) =>
+                `flex items-center p-3 rounded-lg hover:bg-pink-500 ${
+                  isActive ? 'bg-pink-500 text-white' : ''
+                }`
+              }
+            >
               <img src="\img\Groups.png" alt="" />
               <span class="ml-3">Teams</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/analytics" class="flex items-center p-3 rounded-lg hover:bg-pink-500">
+            <NavLink
+              to="/analytics"
+              className={({ isActive }) =>
+                `flex items-center p-3 rounded-lg hover:bg-pink-500 ${
+                  isActive ? 'bg-pink-500 text-white' : ''
+                }`
+              }
+            >
               <img src="\img\Pie chart.png" alt="" />
               <span class="ml-3">Analytics</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/messages" class="flex items-center p-3 rounded-lg hover:bg-pink-500">
+            <NavLink
+              to="/messages"
+              className={({ isActive }) =>
+                `flex items-center p-3 rounded-lg hover:bg-pink-500 ${
+                  isActive ? 'bg-pink-500 text-white' : ''
+                }`
+              }
+            >
               <img src="\img\Chat.png" alt="" />
               <span class="ml-3">Messages</span>
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to="/integrations" class="flex items-center p-3 rounded-lg hover:bg-pink-500">
+            <NavLink
+              to="/integrations"
+              className={({ isActive }) =>
+                `flex items-center p-3 rounded-lg hover:bg-pink-500 ${
+                  isActive ? 'bg-pink-500 text-white' : ''
+                }`
+              }
+            >
               <img src="\img\Code.png" alt="" />
               <span class="ml-3">Integrations</span>
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>
