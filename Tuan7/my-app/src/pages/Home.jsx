@@ -7,10 +7,8 @@ const Home = () => {
        
 
             <div class="grid grid-cols-6 gap-1 ">
-                <div class="col-span-1 bg-blue-700 bg-opacity-80 p-2 border-r-1 border-gray-400 ">
-                    
-                </div>
-                <div class="col-span-5 bg-white bg-opacity-80 ">
+                
+                <div class="col-span-6 bg-white bg-opacity-80 ">
                     <Main></Main>
                     
                 </div>
