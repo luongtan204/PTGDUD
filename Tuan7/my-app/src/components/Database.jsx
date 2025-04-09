@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { FaDownload, FaUpload, FaPen } from 'react-icons/fa';
+import { FaDownload, FaUpload, FaPen, FaPlus } from 'react-icons/fa';
 
 const Database = () => {
   const [reports, setReports] = useState([]);
-  const [selectedReport, setSelectedReport] = useState(null); // Report được chọn để chỉnh sửa
+  const [selectedReport, setSelectedReport] = useState(null); // Report được chọn để chỉnh sửa hoặc thêm mới
   const [isModalOpen, setIsModalOpen] = useState(false); // Trạng thái mở modal
+  const [isAddMode, setIsAddMode] = useState(false); // Trạng thái thêm mới
 
   useEffect(() => {
     // Fetch report data from JSON server
@@ -13,9 +14,24 @@ const Database = () => {
       .then((data) => setReports(data));
   }, []);
 
-  // Hàm mở modal và đặt dữ liệu report được chọn
+  // Hàm mở modal để thêm mới
+  const handleAddClick = () => {
+    setSelectedReport({
+      customerName: '',
+      company: '',
+      orderValue: '',
+      orderDate: '',
+      status: 'New',
+      profileImage: '', // Thêm trường hình ảnh
+    });
+    setIsAddMode(true);
+    setIsModalOpen(true);
+  };
+
+  // Hàm mở modal để chỉnh sửa
   const handleEditClick = (report) => {
     setSelectedReport(report);
+    setIsAddMode(false);
     setIsModalOpen(true);
   };
 
@@ -25,25 +41,53 @@ const Database = () => {
     setSelectedReport({ ...selectedReport, [name]: value });
   };
 
-  // Hàm lưu dữ liệu chỉnh sửa
+  // Hàm xử lý khi người dùng chọn hình ảnh
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setSelectedReport({ ...selectedReport, profileImage: reader.result });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  // Hàm lưu dữ liệu chỉnh sửa hoặc thêm mới
   const handleSave = () => {
-    fetch(`http://localhost:3004/reports/${selectedReport.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(selectedReport),
-    })
-      .then((response) => response.json())
-      .then((updatedReport) => {
-        // Cập nhật danh sách reports
-        setReports((prevReports) =>
-          prevReports.map((report) =>
-            report.id === updatedReport.id ? updatedReport : report
-          )
-        );
-        setIsModalOpen(false); // Đóng modal
-      });
+    if (isAddMode) {
+      // Thêm mới (POST)
+      fetch('http://localhost:3004/reports', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(selectedReport),
+      })
+        .then((response) => response.json())
+        .then((newReport) => {
+          setReports((prevReports) => [...prevReports, newReport]);
+          setIsModalOpen(false); // Đóng modal
+        });
+    } else {
+      // Chỉnh sửa (PUT)
+      fetch(`http://localhost:3004/reports/${selectedReport.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(selectedReport),
+      })
+        .then((response) => response.json())
+        .then((updatedReport) => {
+          setReports((prevReports) =>
+            prevReports.map((report) =>
+              report.id === updatedReport.id ? updatedReport : report
+            )
+          );
+          setIsModalOpen(false); // Đóng modal
+        });
+    }
   };
 
   return (
@@ -55,6 +99,14 @@ const Database = () => {
           Detailed Report
         </h2>
         <div className="flex gap-4">
+          {/* Add User Button */}
+          <button
+            className="flex items-center gap-2 px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600"
+            onClick={handleAddClick}
+          >
+            <FaPlus />
+            Add User
+          </button>
           {/* Import Button */}
           <button className="flex items-center gap-2 px-4 py-2 border border-pink-500 text-pink-500 rounded-lg hover:bg-pink-100">
             <FaDownload />
@@ -128,11 +180,13 @@ const Database = () => {
         </table>
       </div>
 
-      {/* Edit Modal */}
+      {/* Edit/Add Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 bg-gray-200 bg-opacity-50 flex items-center justify-center">
           <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
-            <h3 className="text-xl font-bold mb-4">Edit Report</h3>
+            <h3 className="text-xl font-bold mb-4">
+              {isAddMode ? 'Add User' : 'Edit Report'}
+            </h3>
             <div className="mb-4">
               <label className="block text-sm font-medium text-gray-700">Customer Name</label>
               <input
@@ -185,6 +239,22 @@ const Database = () => {
                 <option value="In-progress">In-progress</option>
                 <option value="Completed">Completed</option>
               </select>
+            </div>
+            <div className="mb-4">
+              <label className="block text-sm font-medium text-gray-700">Profile Image</label>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageChange}
+                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
+              />
+              {selectedReport.profileImage && (
+                <img
+                  src={selectedReport.profileImage}
+                  alt="Preview"
+                  className="mt-4 w-20 h-20 rounded-full"
+                />
+              )}
             </div>
             <div className="flex justify-end gap-4">
               <button
