@@ -3,16 +3,37 @@ import { FaDownload, FaUpload, FaPen, FaPlus } from 'react-icons/fa';
 
 const Database = () => {
   const [reports, setReports] = useState([]);
-  const [selectedReport, setSelectedReport] = useState(null); // Report được chọn để chỉnh sửa hoặc thêm mới
+  const [selectedReport, setSelectedReport] = useState(null); // Report được chọn để chỉnh sửa
   const [isModalOpen, setIsModalOpen] = useState(false); // Trạng thái mở modal
   const [isAddMode, setIsAddMode] = useState(false); // Trạng thái thêm mới
+  const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
+  const rowsPerPage = 5; // Số hàng mỗi trang
 
   useEffect(() => {
-    // Fetch report data from JSON server
+    // Fetch report data từ JSON server
     fetch('http://localhost:3004/reports')
-      .then((response) => response.json())
-      .then((data) => setReports(data));
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to fetch reports');
+        }
+        return response.json();
+      })
+      .then((data) => setReports(data))
+      .catch((error) => console.error('Error fetching reports:', error));
   }, []);
+
+  // Tính toán dữ liệu hiển thị cho trang hiện tại
+  const indexOfLastRow = currentPage * rowsPerPage;
+  const indexOfFirstRow = indexOfLastRow - rowsPerPage;
+  const currentRows = reports.slice(indexOfFirstRow, indexOfLastRow);
+
+  // Tổng số trang
+  const totalPages = Math.ceil(reports.length / rowsPerPage);
+
+  // Hàm chuyển trang
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   // Hàm mở modal để thêm mới
   const handleAddClick = () => {
@@ -22,7 +43,6 @@ const Database = () => {
       orderValue: '',
       orderDate: '',
       status: 'New',
-      profileImage: '', // Thêm trường hình ảnh
     });
     setIsAddMode(true);
     setIsModalOpen(true);
@@ -39,18 +59,6 @@ const Database = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setSelectedReport({ ...selectedReport, [name]: value });
-  };
-
-  // Hàm xử lý khi người dùng chọn hình ảnh
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        setSelectedReport({ ...selectedReport, profileImage: reader.result });
-      };
-      reader.readAsDataURL(file);
-    }
   };
 
   // Hàm lưu dữ liệu chỉnh sửa hoặc thêm mới
@@ -137,7 +145,7 @@ const Database = () => {
             </tr>
           </thead>
           <tbody>
-            {reports.map((report) => (
+            {currentRows.map((report) => (
               <tr key={report.id} className="border-b">
                 <td className="p-4">
                   <input type="checkbox" className="w-4 h-4" />
@@ -155,13 +163,12 @@ const Database = () => {
                 <td className="p-4 text-gray-600">{report.orderDate}</td>
                 <td className="p-4">
                   <span
-                    className={`px-3 py-1 rounded-full text-sm font-medium ${
-                      report.status === 'New'
+                    className={`px-3 py-1 rounded-full text-sm font-medium ${report.status === 'New'
                         ? 'bg-blue-100 text-blue-600'
                         : report.status === 'In-progress'
-                        ? 'bg-yellow-100 text-yellow-600'
-                        : 'bg-green-100 text-green-600'
-                    }`}
+                          ? 'bg-yellow-100 text-yellow-600'
+                          : 'bg-green-100 text-green-600'
+                      }`}
                   >
                     {report.status}
                   </span>
@@ -178,6 +185,48 @@ const Database = () => {
             ))}
           </tbody>
         </table>
+      </div>
+
+      {/* Pagination */}
+      <div className="flex justify-between items-center mt-4">
+        {/* Tổng số kết quả */}
+        <div className="text-gray-600">
+          Total Results: <span className="font-bold">{reports.length}</span>
+        </div>
+
+        {/* Thanh phân trang */}
+        <div className="flex items-center gap-2">
+          <button
+            className={`px-3 py-1 rounded-full ${currentPage === 1 ? 'bg-gray-300 cursor-not-allowed' : 'bg-gray-200 hover:bg-gray-300'
+              }`}
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+          >
+            &lt;
+          </button>
+          {Array.from({ length: totalPages }, (_, index) => (
+            <button
+              key={index + 1}
+              className={`px-3 py-1 rounded-full ${currentPage === index + 1
+                  ? 'bg-pink-500 text-white'
+                  : 'bg-gray-200 hover:bg-gray-300 text-gray-600'
+                }`}
+              onClick={() => handlePageChange(index + 1)}
+            >
+              {index + 1}
+            </button>
+          ))}
+          <button
+            className={`px-3 py-1 rounded-full ${currentPage === totalPages
+                ? 'bg-gray-300 cursor-not-allowed'
+                : 'bg-gray-200 hover:bg-gray-300'
+              }`}
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+          >
+            &gt;
+          </button>
+        </div>
       </div>
 
       {/* Edit/Add Modal */}
@@ -239,22 +288,6 @@ const Database = () => {
                 <option value="In-progress">In-progress</option>
                 <option value="Completed">Completed</option>
               </select>
-            </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">Profile Image</label>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-                className="mt-1 block w-full border-gray-300 rounded-md shadow-sm"
-              />
-              {selectedReport.profileImage && (
-                <img
-                  src={selectedReport.profileImage}
-                  alt="Preview"
-                  className="mt-4 w-20 h-20 rounded-full"
-                />
-              )}
             </div>
             <div className="flex justify-end gap-4">
               <button
