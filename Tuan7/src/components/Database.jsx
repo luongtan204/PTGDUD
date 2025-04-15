@@ -99,7 +99,7 @@ const Database = () => {
   };
 
   return (
-    <div className="p-6 bg-yellow-500 h-200">
+    <div className="p-6 bg-gray-300 h-200">
      
     </div>
   );
