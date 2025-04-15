@@ -1,6 +1,6 @@
 const Header = () => {
     return (
-        <div className="grid grid-cols-6 items-center gap-4 bg-white bg-opacity-80 p-4 border-b border-gray-300">
+        <div className="grid grid-cols-6 items-center gap-4 bg-white bg-opacity-80 p-4 border-b border-gray-300 ">
             {/* Tiêu đề Dashboard */}
             <h1 className="col-span-3 text-2xl font-bold text-pink-500">Dashboard</h1>
 
