@@ -10,7 +10,7 @@ function App() {
     <Router>
       <div className="flex">
         {/* Thanh điều hướng bên trái */}
-        <div className="w-1/7 bg-gray-200 min-h-screen">
+        <div className=" w-1/5 bg-gray-200 h-screen p-4">
           <NavLeft />
         </div>
         {/* Nội dung chính */}
