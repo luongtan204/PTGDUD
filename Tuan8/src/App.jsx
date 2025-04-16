@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import SectionLayout from './layouts/SectionLayout';
-
+import RecipeOfTheDay from './components/RecipeOfTheDay';
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
@@ -10,11 +10,8 @@ function App() {
       <Header />
 
       {/* Recipe of the Day */}
-      <SectionLayout className="bg-red-500 py-12">
-        <h2 className="text-2xl font-bold text-gray-800">Recipe of the Day</h2>
-        <p className="text-gray-600 mt-4">
-          Classic Italian Salad Caprese: ripe tomatoes, fresh mozzarella, and balsamic vinegar.
-        </p>
+      <SectionLayout className="bg-red-500 ">
+          <RecipeOfTheDay></RecipeOfTheDay>
       </SectionLayout>
 
       {/* This Summer Recipes */}
