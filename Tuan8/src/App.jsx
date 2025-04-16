@@ -4,6 +4,7 @@ import Footer from './components/Footer';
 import SectionLayout from './layouts/SectionLayout';
 import RecipeOfTheDay from './components/RecipeOfTheDay';
 import RecipeList from './components/RecipeList';
+import VideoRecipes from './components/VideoRecipes';
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
@@ -12,20 +13,17 @@ function App() {
 
       {/* Recipe of the Day */}
       <SectionLayout className="bg-red-500 ">
-          <RecipeOfTheDay></RecipeOfTheDay>
+        <RecipeOfTheDay></RecipeOfTheDay>
       </SectionLayout>
 
       {/* This Summer Recipes */}
       <SectionLayout >
-      <RecipeList></RecipeList>
+        <RecipeList></RecipeList>
       </SectionLayout>
 
       {/* Recipes With Videos */}
-      <SectionLayout className="bg-red-500 py-12">
-        <h2 className="text-2xl font-bold text-gray-800">Recipes With Videos</h2>
-        <p className="text-gray-600 mt-4">
-          Cooking up culinary creations with step-by-step videos.
-        </p>
+      <SectionLayout >
+        <VideoRecipes></VideoRecipes>
       </SectionLayout>
 
       {/* Editor's Pick */}
