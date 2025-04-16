@@ -5,6 +5,7 @@ import SectionLayout from './layouts/SectionLayout';
 import RecipeOfTheDay from './components/RecipeOfTheDay';
 import RecipeList from './components/RecipeList';
 import VideoRecipes from './components/VideoRecipes';
+import EditorsPick from './components/EditorsPick';
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
@@ -27,11 +28,8 @@ function App() {
       </SectionLayout>
 
       {/* Editor's Pick */}
-      <SectionLayout className="bg-gray-100 py-12">
-        <h2 className="text-2xl font-bold text-gray-800">Editor's Pick</h2>
-        <p className="text-gray-600 mt-4">
-          Curated culinary delights: handpicked favorites by our expert editors!
-        </p>
+      <SectionLayout >
+      <EditorsPick></EditorsPick>
       </SectionLayout>
 
       {/* Footer */}

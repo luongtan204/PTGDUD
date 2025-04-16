@@ -50,5 +50,39 @@
       "image": "img/Snack cakes.png",
       "time": "21 minutes"
     }
+  ],
+  "EditorsPick": [
+    {
+      "title": "Stuffed sticky rice ball",
+      "description": "Stuffed sticky rice balls: A delightful Asian treat with chewy, glutinous rice and a flavorful surprise filling...",
+      "image": "img/Vegetable and shrimp spaghetti.png",
+      "author": "Jennifer King",
+      "authorAvatar": "img/Avatar (2).png",
+      "time": "34 minutes"
+    },
+    {
+      "title": "Strawberry smoothie",
+      "description": "Savor the refreshing delight of a strawberry smoothie. Made with ripe strawberries, this creamy blend offers...",
+      "image": "img/Vegetable and shrimp spaghetti.png",
+      "author": "Matthew Martinez",
+      "authorAvatar": "img/Avatar (3).png",
+      "time": "40 minutes"
+    },
+    {
+      "title": "Latte Art",
+      "description": "Latte art is the skillful craft of creating captivating designs on the surface of a latte...",
+      "image": "img/Vegetable and shrimp spaghetti.png",
+      "author": "Sarah Hill",
+      "authorAvatar": "img/Avatar (4).png",
+      "time": "19 minutes"
+    },
+    {
+      "title": "Butter fried noodles",
+      "description": "Butter fried noodles: Savory noodles cooked in butter for a delicious and satisfying meal...",
+      "image": "img/Vegetable and shrimp spaghetti.png",
+      "author": "Julia Lopez",
+      "authorAvatar": "img/Avatar (5).png",
+      "time": "16 minutes"
+    }
   ]
 }
