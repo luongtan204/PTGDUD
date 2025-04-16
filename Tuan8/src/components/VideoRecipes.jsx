@@ -18,7 +18,7 @@ const VideoRecipes = () => {
                 {/* Card 1 */}
                 <div className="relative w-[270px] h-[292px] bg-white rounded-[12px] shadow-[0px_0px_1px_rgba(23,26,31,0.15),0px_0px_2px_rgba(23,26,31,0.2)]">
                     <img
-                        src="img\Italian-style tomato.png"
+                        src="img\Salad with cabbage.png"
                         alt="Salad with cabbage and shrimp"
                         className="absolute top-0 left-[-2px] w-[273px] h-[176px] rounded-t-[12px] border border-[#BCC1CA]"
                     />
@@ -44,7 +44,7 @@ const VideoRecipes = () => {
                 {/* Card 2 */}
                 <div className="relative w-[270px] h-[292px] bg-white rounded-[12px] shadow-[0px_0px_1px_rgba(23,26,31,0.15),0px_0px_2px_rgba(23,26,31,0.2)]">
                     <img
-                        src="img\Vegetable and shrimp spaghetti.png"
+                        src="img\Bean, shrimp, and potato salad.png"
                         alt="Salad of cove beans, shrimp and potatoes"
                         className="absolute top-0 left-[-2px] w-[273px] h-[176px] rounded-t-[12px] border border-[#BCC1CA]"
                     />
@@ -70,7 +70,7 @@ const VideoRecipes = () => {
                 {/* Card 3 */}
                 <div className="relative w-[270px] h-[292px] bg-white rounded-[12px] shadow-[0px_0px_1px_rgba(23,26,31,0.15),0px_0px_2px_rgba(23,26,31,0.2)]">
                     <img
-                        src="img/Lotus delight salad.png"
+                        src="img/Sunny-side up fried eggs.png"
                         alt="Sunny-side up fried eggs"
                         className="absolute top-0 left-[-2px] w-[273px] h-[176px] rounded-t-[12px] border border-[#BCC1CA]"
                     />
@@ -96,7 +96,7 @@ const VideoRecipes = () => {
                 {/* Card 4 */}
                 <div className="relative w-[270px] h-[292px] bg-white rounded-[12px] shadow-[0px_0px_1px_rgba(23,26,31,0.15),0px_0px_2px_rgba(23,26,31,0.2)]">
                     <img
-                        src="img/Snack cakes.png"
+                        src="img/Lotus delight salad_01.png"
                         alt="Lotus delight salad"
                         className="absolute top-0 left-[-2px] w-[273px] h-[176px] rounded-t-[12px] border border-[#BCC1CA]"
                     />
