@@ -3,6 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import SectionLayout from './layouts/SectionLayout';
 import RecipeOfTheDay from './components/RecipeOfTheDay';
+import RecipeList from './components/RecipeList';
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
@@ -15,11 +16,8 @@ function App() {
       </SectionLayout>
 
       {/* This Summer Recipes */}
-      <SectionLayout className="bg-blue-900 py-12">
-        <h2 className="text-2xl font-bold text-gray-800">This Summer Recipes</h2>
-        <p className="text-gray-600 mt-4">
-          We have all your Independence Day sweets covered.
-        </p>
+      <SectionLayout >
+      <RecipeList></RecipeList>
       </SectionLayout>
 
       {/* Recipes With Videos */}
