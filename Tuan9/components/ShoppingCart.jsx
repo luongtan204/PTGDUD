@@ -14,9 +14,9 @@ export default function ShoppingCart() {
 
   // Sample products to add to cart
   const products = [
-    { id: "1", name: "Áo thun", price: 250000, image: "/placeholder.svg?height=80&width=80" },
-    { id: "2", name: "Quần jean", price: 450000, image: "/placeholder.svg?height=80&width=80" },
-    { id: "3", name: "Giày thể thao", price: 850000, image: "/placeholder.svg?height=80&width=80" },
+    { id: "1", name: "Áo thun", price: 250000, image: "https://picsum.photos/80" },
+    { id: "2", name: "Quần jean", price: 450000, image: "https://picsum.photos/80" },
+    { id: "3", name: "Giày thể thao", price: 850000, image: "https://picsum.photos/80" },
   ]
 
   // Calculate totals
