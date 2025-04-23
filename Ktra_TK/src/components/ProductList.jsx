@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProductForm from './ProductForm';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
+import ProductItem from './ProductItem';
 
 const ProductList = () => {
   // Initial sample data
@@ -172,21 +173,11 @@ const ProductList = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProducts.map((product) => (
-          <div 
-            key={product.id} 
-            className="bg-white rounded-lg shadow-md p-6 transition-transform duration-200 hover:-translate-y-1"
-          >
-            <h3 className="text-xl font-semibold text-gray-800 mb-4">{product.name}</h3>
-            <p className="text-red-600 font-bold text-lg mb-2">Giá: ${product.price}</p>
-            <p className="text-gray-600 mb-2">Danh mục: {product.category}</p>
-            <p className="text-gray-600 mb-4">Tồn kho: {product.stock}</p>
-            <button 
-              className="w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-200"
-              onClick={() => openDeleteModal(product)}
-            >
-              Xóa
-            </button>
-          </div>
+          <ProductItem 
+            key={product.id}
+            product={product}
+            onDelete={openDeleteModal}
+          />
         ))}
       </div>
     </div>
