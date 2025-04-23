@@ -82,6 +82,10 @@ const ProductList = () => {
     return matchesSearch && matchesCategory;
   });
 
+  // Calculate totals
+  const totalProducts = filteredProducts.length;
+  const totalStock = filteredProducts.reduce((sum, product) => sum + product.stock, 0);
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
       <div className="flex justify-between items-center mb-8">
@@ -123,6 +127,19 @@ const ProductList = () => {
               </option>
             ))}
           </select>
+        </div>
+      </div>
+
+      <div className="bg-white rounded-lg shadow-md p-4 mb-6">
+        <div className="flex flex-wrap gap-4 text-gray-700">
+          <div className="flex items-center">
+            <span className="font-semibold mr-2">Tổng sản phẩm:</span>
+            <span className="text-blue-600 font-bold">{totalProducts}</span>
+          </div>
+          <div className="flex items-center">
+            <span className="font-semibold mr-2">Tổng tồn kho:</span>
+            <span className="text-blue-600 font-bold">{totalStock}</span>
+          </div>
         </div>
       </div>
 
