@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
+import ProductForm from './ProductForm';
 
 const ProductList = () => {
-  // Sample data - in a real application, this would come from an API or database
-  const products = [
+  const [products, setProducts] = useState([
     {
       id: 1,
       name: "Laptop Dell XPS 13",
@@ -24,16 +24,37 @@ const ProductList = () => {
       category: "Electronics",
       stock: 10
     }
-  ];
+  ]);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleDelete = (id) => {
-    // In a real application, this would make an API call to delete the product
-    console.log(`Deleting product with id: ${id}`);
+    setProducts(products.filter(product => product.id !== id));
+  };
+
+  const handleAddProduct = (newProduct) => {
+    setProducts([...products, newProduct]);
   };
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
-      <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Danh Sách Sản Phẩm</h2>
+      <div className="flex justify-between items-center mb-8">
+        <h2 className="text-3xl font-bold text-gray-800">Danh Sách Sản Phẩm</h2>
+        <button
+          onClick={() => setIsModalOpen(true)}
+          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200"
+        >
+          Thêm sản phẩm
+        </button>
+      </div>
+
+      {isModalOpen && (
+        <ProductForm
+          onAddProduct={handleAddProduct}
+          onClose={() => setIsModalOpen(false)}
+        />
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
           <div 
