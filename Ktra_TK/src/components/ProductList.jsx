@@ -29,6 +29,7 @@ const ProductList = () => {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [deleteModal, setDeleteModal] = useState({ isOpen: false, product: null });
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleDelete = (id) => {
     setProducts(products.filter(product => product.id !== id));
@@ -43,6 +44,16 @@ const ProductList = () => {
     setDeleteModal({ isOpen: true, product });
   };
 
+  const filteredProducts = products.filter(product => {
+    const searchLower = searchTerm.toLowerCase();
+    return (
+      product.name.toLowerCase().includes(searchLower) ||
+      product.category.toLowerCase().includes(searchLower) ||
+      product.price.toString().includes(searchLower) ||
+      product.stock.toString().includes(searchLower)
+    );
+  });
+
   return (
     <div className="container mx-auto px-4 py-8 max-w-7xl">
       <div className="flex justify-between items-center mb-8">
@@ -53,6 +64,23 @@ const ProductList = () => {
         >
           Thêm sản phẩm
         </button>
+      </div>
+
+      <div className="mb-6">
+        <div className="relative">
+          <input
+            type="text"
+            placeholder="Tìm kiếm sản phẩm..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <div className="absolute inset-y-0 right-0 flex items-center pr-3">
+            <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            </svg>
+          </div>
+        </div>
       </div>
 
       {isModalOpen && (
@@ -71,7 +99,7 @@ const ProductList = () => {
       )}
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <div 
             key={product.id} 
             className="bg-white rounded-lg shadow-md p-6 transition-transform duration-200 hover:-translate-y-1"
