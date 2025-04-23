@@ -8,28 +8,53 @@ const ProductList = () => {
       id: 1,
       name: "Laptop Dell XPS 13",
       price: 1299.99,
-      category: "Electronics",
+      category: "Công nghệ",
       stock: 15
     },
     {
       id: 2,
       name: "iPhone 13 Pro",
       price: 999.99,
-      category: "Electronics",
+      category: "Công nghệ",
       stock: 25
     },
     {
       id: 3,
       name: "Samsung 4K TV",
       price: 799.99,
-      category: "Electronics",
+      category: "Công nghệ",
       stock: 10
+    },
+    {
+      id: 4,
+      name: "Áo thun nam",
+      price: 29.99,
+      category: "Thời trang",
+      stock: 50
+    },
+    {
+      id: 5,
+      name: "Quần jean nữ",
+      price: 59.99,
+      category: "Thời trang",
+      stock: 30
+    },
+    {
+      id: 6,
+      name: "Nồi cơm điện",
+      price: 89.99,
+      category: "Gia dụng",
+      stock: 20
     }
   ]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [deleteModal, setDeleteModal] = useState({ isOpen: false, product: null });
   const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('');
+
+  // Get unique categories from products
+  const categories = ['Tất cả', ...new Set(products.map(product => product.category))];
 
   const handleDelete = (id) => {
     setProducts(products.filter(product => product.id !== id));
@@ -46,12 +71,15 @@ const ProductList = () => {
 
   const filteredProducts = products.filter(product => {
     const searchLower = searchTerm.toLowerCase();
-    return (
+    const matchesSearch = 
       product.name.toLowerCase().includes(searchLower) ||
       product.category.toLowerCase().includes(searchLower) ||
       product.price.toString().includes(searchLower) ||
-      product.stock.toString().includes(searchLower)
-    );
+      product.stock.toString().includes(searchLower);
+    
+    const matchesCategory = selectedCategory === '' || selectedCategory === 'Tất cả' || product.category === selectedCategory;
+    
+    return matchesSearch && matchesCategory;
   });
 
   return (
@@ -66,8 +94,8 @@ const ProductList = () => {
         </button>
       </div>
 
-      <div className="mb-6">
-        <div className="relative">
+      <div className="mb-6 flex flex-col md:flex-row gap-4">
+        <div className="relative flex-grow">
           <input
             type="text"
             placeholder="Tìm kiếm sản phẩm..."
@@ -80,6 +108,21 @@ const ProductList = () => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
           </div>
+        </div>
+        
+        <div className="w-full md:w-64">
+          <select
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+          >
+            <option value="">Tất cả danh mục</option>
+            {categories.filter(category => category !== 'Tất cả').map((category) => (
+              <option key={category} value={category}>
+                {category}
+              </option>
+            ))}
+          </select>
         </div>
       </div>
 
