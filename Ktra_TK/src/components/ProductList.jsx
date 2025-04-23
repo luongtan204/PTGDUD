@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProductForm from './ProductForm';
+import DeleteConfirmationModal from './DeleteConfirmationModal';
 
 const ProductList = () => {
   const [products, setProducts] = useState([
@@ -27,13 +28,19 @@ const ProductList = () => {
   ]);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [deleteModal, setDeleteModal] = useState({ isOpen: false, product: null });
 
   const handleDelete = (id) => {
     setProducts(products.filter(product => product.id !== id));
+    setDeleteModal({ isOpen: false, product: null });
   };
 
   const handleAddProduct = (newProduct) => {
     setProducts([...products, newProduct]);
+  };
+
+  const openDeleteModal = (product) => {
+    setDeleteModal({ isOpen: true, product });
   };
 
   return (
@@ -55,6 +62,14 @@ const ProductList = () => {
         />
       )}
 
+      {deleteModal.isOpen && deleteModal.product && (
+        <DeleteConfirmationModal
+          productName={deleteModal.product.name}
+          onConfirm={() => handleDelete(deleteModal.product.id)}
+          onCancel={() => setDeleteModal({ isOpen: false, product: null })}
+        />
+      )}
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
           <div 
@@ -67,7 +82,7 @@ const ProductList = () => {
             <p className="text-gray-600 mb-4">Tồn kho: {product.stock}</p>
             <button 
               className="w-full bg-red-500 text-white py-2 px-4 rounded-md hover:bg-red-600 transition-colors duration-200"
-              onClick={() => handleDelete(product.id)}
+              onClick={() => openDeleteModal(product)}
             >
               Xóa
             </button>
