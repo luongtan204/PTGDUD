@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ProductForm from './ProductForm';
 import DeleteConfirmationModal from './DeleteConfirmationModal';
 
 const ProductList = () => {
-  const [products, setProducts] = useState([
+  // Initial sample data
+  const initialProducts = [
     {
       id: 1,
       name: "Laptop Dell XPS 13",
@@ -46,12 +47,23 @@ const ProductList = () => {
       category: "Gia dụng",
       stock: 20
     }
-  ]);
+  ];
+
+  // Load products from localStorage or use initial data
+  const [products, setProducts] = useState(() => {
+    const savedProducts = localStorage.getItem('products');
+    return savedProducts ? JSON.parse(savedProducts) : initialProducts;
+  });
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [deleteModal, setDeleteModal] = useState({ isOpen: false, product: null });
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('');
+
+  // Save products to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('products', JSON.stringify(products));
+  }, [products]);
 
   // Get unique categories from products
   const categories = ['Tất cả', ...new Set(products.map(product => product.category))];
